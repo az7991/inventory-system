@@ -45,3 +45,4 @@ Klona detta repository till din lokala dator:
 git clone <repository-url>
 cd <repository-folder>
 
+# inventory-system
