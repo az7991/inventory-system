@@ -1,7 +1,7 @@
 import bcrypt
 import sqlite3
 import jwt
-import datetime
+import datetime 
 import json
 from db import connect_db
 from cryptography.fernet import Fernet
@@ -24,14 +24,11 @@ def load_key():
 generate_key()
 fernet = Fernet(load_key())
 
-import bcrypt
-
 def hash_password(password: str) -> bytes:
     """Hashar ett lösenord."""
     salt = bcrypt.gensalt()
     hashed = bcrypt.hashpw(password.encode(), salt)
     return hashed
-
 
 def encrypt_password(password):
     return fernet.encrypt(password.encode()).decode()
@@ -106,14 +103,12 @@ def delete_user(username):
     finally:
         conn.close()
 
-def hash_password(password):
-    return bcrypt.hashpw(password.encode(), bcrypt.gensalt())
-
 def create_jwt(username, role):
     payload = {
         'username': username,
         'role': role,
-        'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)  # Expiration time
+        'exp': datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=1)
+
     }
     token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
     return token
@@ -134,7 +129,10 @@ def get_all_users():
     cursor.execute("SELECT username FROM users")
     users = cursor.fetchall()
     conn.close()
-    return users
+    return users  # Skickar endast en lista med användarnamn.
+
+
+
 
 
 

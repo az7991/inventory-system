@@ -1,5 +1,9 @@
 bcrypt
 pyjwt
 pytest
-sqlite3
 cryptography
+pandas
+numpy
+openpyxl
+schedule
+
