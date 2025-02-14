@@ -43,7 +43,7 @@ Följ dessa steg för att köra systemet lokalt:
 - pip install -r requirements.txt
 
 # Starta applikationen
-- python main.py
+- python3 main.py
 
 # Kör tester
 - pytest
